@@ -585,14 +585,14 @@ class KAControlGroup:
                     if (Delta is not None) and (v2 is not None) and (v3 is not None):
                         for textk, crossingk, Dk, v2k, v3k in self.knottable:
                             if math.fabs(Delta-Dk)<0.000001 and v2==v2k and math.fabs(v3)==v3k:
-                                if len(ablist)/2>crossingk: #TODO This is too strict.
+                                if len(ablist)//2>crossingk: #TODO This is too strict.
                                     print(("The knot type is possibly %s" % textk))
-                                    print(("The upper bound on the number of crossings is %d" % (len(ablist)/2)))
+                                    print(("The upper bound on the number of crossings is %d" % (len(ablist)//2)))
                                     if self.break_resi:
                                         print((self.WARNING_MISSINGRESIDUES))
                                     textk+="?" #Indicate uncertainty of knot type
                                 else:
-                                    print(("The knot type is %s with %d crossings" % (textk,len(ablist)/2)))
+                                    print(("The knot type is %s with %d crossings" % (textk,len(ablist)//2)))
                                     if self.break_resi:
                                         print((self.WARNING_MISSINGRESIDUES))
                                 if self.break_resi:
@@ -612,7 +612,7 @@ class KAControlGroup:
                                                                            backboneatomname),
                                     "'KNOTTED'") #Pay attention to the quotes within quotes
                             print("The backbone is knotted")
-                            print(("The upper bound on the number of crossings is %d" % len(ablist)/2))
+                            print("The upper bound on the number of crossings is %d" % (len(ablist)//2))
                             if self.break_resi:
                                 print((self.WARNING_MISSINGRESIDUES))
             else:
@@ -1258,7 +1258,7 @@ class KAControlGroup:
                 pass
         #TODO Check Reidemeister move 1 on first and last crossing
         if show_reidcrossings==1:
-            print("crossing number=", len(ablist)/2)
+            print("crossing number=", len(ablist)//2)
 
         if self.gausscode_var.get() and self.show_gausscode_options.getvalue()==self.gausscode_options_tuple[1]:
             #Build gauss code, with only most of the "nugatory" crossings removed
@@ -1281,27 +1281,27 @@ class KAControlGroup:
             #    print "Reidemeister 2"
             self.Reidemeister2(ablist,signedlabellist)
             if show_reidcrossings==1:
-                print("crossing number=", len(ablist)/2)
+                print("crossing number=", len(ablist)//2)
                 #print "Macro move with Reidemeister 1"
             self.macromove1(ablist,signedlabellist)
             if show_reidcrossings==1:
-                print("crossing number=", len(ablist)/2)
+                print("crossing number=", len(ablist)//2)
 ##            self.macromove2(ablist,signedlabellist)
 ##            if show_reidcrossings==1:
-##                print "crossing number=", len(ablist)/2
+##                print "crossing number=", len(ablist)//2
 
             self.Reidemeister3_1(ablist,signedlabellist)
             if show_reidcrossings==1:
-                print("crossing number=", len(ablist)/2)
+                print("crossing number=", len(ablist)//2)
                 #print [(ab,s) for ab, s in zip(ablist,signedlabellist)]
 
             self.Reidemeister3_2(ablist,signedlabellist)
             if show_reidcrossings==1:
-                print("crossing number=", len(ablist)/2)
+                print("crossing number=", len(ablist)//2)
 
             self.Reidemeister3_3(ablist,signedlabellist)
             if show_reidcrossings==1:
-                print("crossing number=", len(ablist)/2)
+                print("crossing number=", len(ablist)//2)
 
         if False: #if savecrossingsxyz==1:
             #Draw simplified knot based on reduced crossings
@@ -2206,7 +2206,7 @@ class KAControlGroup:
 
     #Computation based on a paper by Vologodskii, et al
     def computeAlexander(self,ablist,num):
-        numunderpasses=len(ablist)/2; #numoverpasses too
+        numunderpasses=len(ablist)//2; #numoverpasses too
         numcrossings=len(ablist)
         underpassnumlist=[0]*numcrossings
         gennumlist=[0]*numcrossings
